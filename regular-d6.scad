@@ -54,7 +54,7 @@ rotate([0,180,0])
 difference(){
     intersection(){
         cube(DiceSide, true);
-        sphere(SphereRadius, true, $fn=100);
+        sphere(SphereRadius, $fn=100);
     }
     SideSub(1);
     SideSub(2);
