@@ -22,6 +22,21 @@ module dodecahedron(height) {
     }
 }
 
+module octahedron(height) {
+    intersection() {
+	// Make a cube
+	cube([2 * height, 2 * height, height], center = true); 
+
+	// Loop i from 0 to 2, and intersect results
+	intersection_for(i = [0:2]) { 
+	    // Make a cube, rotate it 109.47122 degrees around the X axis,
+	    // then 120 * i around the Z axis
+	    rotate([109.47122, 0, 120 * i])
+	    cube([2 * height, 2 * height, height], center = true); 
+	}
+    }
+}
+
 w=-15.525;
 
 module icosahedron(height) {
