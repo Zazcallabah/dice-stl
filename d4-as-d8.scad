@@ -27,7 +27,7 @@ Roundness = 10; // [0:1:20]
 
 EngravingDepth = 1;
 OctaSide = DiceSide / 2;
-
+SphereRadius = DiceSide * ((1-Roundness/10)*(0.87-0.70)+0.70);
 module chamf_octa() {
   // octahedron based on code by Willliam A Adams
   octapoints = [
