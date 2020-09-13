@@ -1,3 +1,5 @@
+// Source: Tim Edwards, https://www.thingiverse.com/timedwards/designs, http://opencircuitdesign.com, Creative Commons - Attribution - Share Alike
+
 //------------------------------------------
 // Polygonal dice
 //------------------------------------------

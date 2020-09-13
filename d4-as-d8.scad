@@ -25,7 +25,7 @@ DiceSide = 20; // [5:1:50]
 // How much to "spherize" the dice. 0=cube, 10=normal, 20=max roundness
 Roundness = 10; // [0:1:20]
 
-EngravingDepth = 1;
+EngravingDepth = 0.7;
 OctaSide = DiceSide / 2;
 SphereRadius = DiceSide * ((1-Roundness/10)*(0.87-0.70)+0.70);
 module chamf_octa() {
@@ -49,16 +49,19 @@ module chamf_octa() {
 	[5,2,1]	
   ];
   intersection() {
-    rotate([0,0,45])
-    scale(v=[OctaSide*1.31,OctaSide*1.31,OctaSide*0.955]) {
-      polyhedron(points=octapoints,faces=octafaces);
-    };
     scale(v=OctaSide) {    
       polyhedron(points=octapoints,faces=octafaces); 
     };
+    rotate([0,0,45])
+    scale(v=[OctaSide*1.37,OctaSide*1.37,OctaSide*0.975]) {
+      polyhedron(points=octapoints,faces=octafaces);
+    };
     sphere(SphereRadius*0.6, $fn=150);
+    rotate([0,0,45])
+    cube([DiceSide*0.685,DiceSide*0.685,DiceSide],center=true);
   }
 }
+
 difference(){
   chamf_octa();
 

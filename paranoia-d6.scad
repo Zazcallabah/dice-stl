@@ -37,19 +37,14 @@ Side5Engraving = "5.png"; // [image_surface:100x100]
 // Face 6 engraving image (heightmap)
 Side6Engraving = "comp.png"; // [image_surface:100x100]
 
-
-/* [Hidden] */
-// This is a shortcut if you want to change texture-set using same files in subfolders.
-// Set the following to the subfolder name where the 6 engraving textures are stored
-// Must terminate with "\\" like "Textures - Names\\"
-TextureFolder = "";
-
 // Don't touch the following constants :)
 SphereRadius = DiceSide * ((1-Roundness/10)*(0.87-0.70)+0.70);
 EngravingCorrection = -0.014;
-SizeCorrection = 1.01;
+EngravingScale = EngravingDepth / 100;
+SizeCorrection = 1.01 / 100;
 Mult = (15-(Roundness-10))/15;
 SurfaceSide = (Roundness>10 ? DiceSide*Mult : DiceSide) * SizeCorrection;
+
 rotate([0,180,0])
 difference(){
     intersection(){
@@ -65,14 +60,13 @@ difference(){
 }
 
 module SideSub(Number){
-
     if (Number == 1)
     {
         mirror([1,0,0])
         translate([0,0,DiceSide/2-EngravingCorrection])
         rotate([0,180,0])
-        resize([SurfaceSide, SurfaceSide, EngravingDepth])
-        surface(file = str(TextureFolder, Side1Engraving), center = true, invert = false);
+        scale([SurfaceSide, SurfaceSide, EngravingScale])
+        surface(file = Side1Engraving, center = true, invert = false);
     }
     else if (Number == 2)
     {
@@ -80,24 +74,24 @@ module SideSub(Number){
         mirror([0,1,0])
         translate([DiceSide/2-EngravingCorrection,0,0])
         rotate([0,270,00])
-        resize([SurfaceSide, SurfaceSide, EngravingDepth])
-        surface(file = str(TextureFolder, Side2Engraving), center = true, invert = false);
+        scale([SurfaceSide, SurfaceSide, EngravingScale])
+        surface(file = Side2Engraving, center = true, invert = false);
     }
     else if (Number == 3)
     {
         mirror([1,0,0])
         translate([0,DiceSide/2-EngravingCorrection,0])
         rotate([90,0,0])
-        resize([SurfaceSide, SurfaceSide, EngravingDepth])
-        surface(file = str(TextureFolder, Side3Engraving), center = true, invert = false);
+        scale([SurfaceSide, SurfaceSide, EngravingScale])
+        surface(file = Side3Engraving, center = true, invert = false);
     }
     else if (Number == 4)
     {
         mirror([0,0,1])
         translate([0,-(DiceSide/2-EngravingCorrection),0])
         rotate([270,0,0])
-        resize([SurfaceSide, SurfaceSide, EngravingDepth])
-        surface(file = str(TextureFolder, Side4Engraving), center = true, invert = false);
+        scale([SurfaceSide, SurfaceSide, EngravingScale])
+        surface(file = Side4Engraving, center = true, invert = false);
     }
     else if (Number == 5)
     {
@@ -105,14 +99,14 @@ module SideSub(Number){
         mirror([0,1,0])
         translate([-(DiceSide/2-EngravingCorrection),0,0])
         rotate([0,90,0])
-        resize([SurfaceSide, SurfaceSide, EngravingDepth])
-        surface(file = str(TextureFolder, Side5Engraving), center = true, invert = false);
+        scale([SurfaceSide, SurfaceSide, EngravingScale])
+        surface(file = Side5Engraving, center = true, invert = false);
     }
     else
     {
         mirror([0,1,0])
         translate([0,0,-(DiceSide/2-EngravingCorrection)])
-        resize([SurfaceSide, SurfaceSide, EngravingDepth])
-        surface(file = str(TextureFolder, Side6Engraving), center = true, invert = false);
+        scale([SurfaceSide, SurfaceSide, EngravingScale])
+        surface(file = Side6Engraving, center = true, invert = false);
     }
 }
